@@ -10,19 +10,21 @@ import org.springframework.ui.Model;
 public class CalculatorController {
 
     @GetMapping("/")
-    public String showForm() {
+    public String displayForm() {
         return "form";
     }
 
     @PostMapping("/")
-    public String submitForm(@RequestParam("inputFlour") Double inputFlour, Model model) {
-        double yeast = Math.round(inputFlour * 0.002 * 10.0)/10.0;
-        double water = Math.round(inputFlour * 0.65);
-        double salt = Math.round(inputFlour * 0.03);
-        model.addAttribute("inputFlour", inputFlour);
-        model.addAttribute("inputYeast", yeast);
-        model.addAttribute("inputWater", water);
-        model.addAttribute("inputSalt", salt);
+    public String calculateForm(@RequestParam("inputFlour") Double inputFlour, Model model) {
+        if(inputFlour != null){
+            double yeast = Math.round(inputFlour * 0.002 * 10.0) / 10.0;
+            double water = Math.round(inputFlour * 0.65);
+            double salt = Math.round(inputFlour * 0.03);
+            model.addAttribute("inputFlour", inputFlour);
+            model.addAttribute("inputYeast", yeast);
+            model.addAttribute("inputWater", water);
+            model.addAttribute("inputSalt", salt);
+        }
         return "form";
     }
 }
