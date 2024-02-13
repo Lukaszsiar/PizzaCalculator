@@ -1,4 +1,4 @@
-package com.example.PizzaCalculator;
+package com.example.pizzaCalculator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,7 +8,6 @@ public class PizzaCalculatorApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PizzaCalculatorApplication.class, args);
-		System.out.println("hello");
 	}
 
 }

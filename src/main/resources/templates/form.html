@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+</head>
+<body>
+    <style>
+        /* Add your CSS styles here */
+        form {
+            max-width: 300px;
+            margin: auto;
+        }
+        input[type="text"], input[type="submit"] {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            width: calc(100% - 20px);
+        }
+    </style>
+
+    <form action="/submit" method="post">
+        <label for="inputFlour">Insert flour:</label>
+        <input type="text" id="inputFlour" name="inputFlour" pattern="^[0-9]*$" title="Please enter only numbers" required>
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    <script>
+        const numberInput = document.getElementById("numberInput");
+        const submitButton = document.getElementById("submitButton");
+
+        // Dodanie nasłuchiwania na zmianę w polu tekstowym
+        numberInput.addEventListener("input", function() {
+            const inputValue = this.value.trim();
+
+            // Sprawdzenie, czy wprowadzona wartość zawiera jedynie cyfry
+            if (/^[0-9]*$/.test(inputValue)) {
+                // Jeśli zawiera tylko cyfry, przywróć standardowe style i umożliw wyłącz przycisk submit
+                this.classList.remove("error");
+                submitButton.disabled = false;
+            } else {
+                // Jeśli zawiera inne znaki, zmień wygląd pola tekstowego na czerwono i wyłącz przycisk submit
+                this.classList.add("error");
+                submitButton.disabled = true;
+            }
+        });
+    </script>
+
+</body>
+</html>
+
+
