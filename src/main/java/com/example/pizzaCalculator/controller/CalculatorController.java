@@ -14,9 +14,15 @@ public class CalculatorController {
         return "form";
     }
 
-    @PostMapping("/submit")
-    public String submitForm(@RequestParam("inputFlour") String inputFlour, Model model) {
+    @PostMapping("/")
+    public String submitForm(@RequestParam("inputFlour") Double inputFlour, Model model) {
+        double yeast = Math.round(inputFlour * 0.002 * 10.0)/10.0;
+        double water = Math.round(inputFlour * 0.65);
+        double salt = Math.round(inputFlour * 0.03);
         model.addAttribute("inputFlour", inputFlour);
-        return "result";
+        model.addAttribute("inputYeast", yeast);
+        model.addAttribute("inputWater", water);
+        model.addAttribute("inputSalt", salt);
+        return "form";
     }
 }
